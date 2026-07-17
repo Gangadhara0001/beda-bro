@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Report Submitted</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+
+        body{
+            background:#f4f6f9;
+        }
+
+        .success-card{
+
+            max-width:750px;
+            margin:80px auto;
+            border-radius:20px;
+            border:none;
+            box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+        }
+
+        .success-icon{
+
+            font-size:90px;
+            color:#198754;
+
+        }
+
+        .title{
+
+            font-size:32px;
+            font-weight:bold;
+
+        }
+
+        .sub{
+
+            color:#666;
+            font-size:18px;
+
+        }
+
+        .btn-home{
+
+            height:55px;
+            font-size:20px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card success-card">
+
+        <div class="card-body p-5 text-center">
+
+            <i class="fa-solid fa-circle-check success-icon"></i>
+
+            <br><br>
+
+            <h2 class="title text-success">
+
+                Report Submitted Successfully
+
+            </h2>
+
+            <hr>
+
+            <p class="sub">
+
+                Your anonymous report has been received successfully.
+
+            </p>
+
+            <p class="sub">
+
+                The submitted information has been securely forwarded to the concerned Police Station for further review and necessary action.
+
+            </p>
+
+            <div class="alert alert-success mt-4">
+
+                <h5>
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    Thank You
+
+                </h5>
+
+                <p class="mb-0">
+
+                    Thank you for supporting Bengaluru City Police in maintaining a safe and drug-free community.
+
+                </p>
+
+            </div>
+
+
+
+            <a th:href="@{/report(qr=${qrCode})}"
+               class="btn btn-outline-secondary btn-lg btn-home">
+
+                <i class="fa-solid fa-file-circle-plus"></i>
+
+                Submit Another Report
+
+            </a>
+            <button type="button"
+                    class="btn btn-secondary btn-lg btn-home"
+                    onclick="closeWindow()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+                Close Page
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+
+    function closeWindow() {
+
+        // Works if the page was opened by script
+        window.close();
+
+        // Fallback for normal browser tabs
+        alert("You may now close this tab. Thank you for supporting Bengaluru City Police.");
+
+    }
+
+</script>
+
+</body>
+</html>

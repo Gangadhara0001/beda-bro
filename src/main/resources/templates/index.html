@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BEDA BRO | Anonymous Drug Activity Report</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+
+            background:#eef2f7;
+
+            font-family:'Segoe UI',sans-serif;
+
+        }
+
+        /*============================
+
+        HEADER
+
+        =============================*/
+
+        .top-strip{
+
+            background:#ffffff;
+
+            border-bottom:5px solid #0B1F63;
+
+            padding:15px;
+
+        }
+
+        .logo{
+
+            height:90px;
+
+        }
+
+        .main-title{
+
+            font-size:34px;
+
+            font-weight:bold;
+
+            color:#0B1F63;
+
+        }
+
+        .sub-title{
+
+            font-size:18px;
+
+            color:#C1121F;
+
+            font-weight:bold;
+
+        }
+
+        .banner{
+
+            background:#0B1F63;
+
+            color:white;
+
+            padding:18px;
+
+            text-align:center;
+
+        }
+
+        .banner h2{
+
+            margin:0;
+
+            color:#FFD000;
+
+            font-weight:bold;
+
+        }
+
+        .banner h5{
+
+            margin-top:10px;
+
+        }
+
+        /*============================
+
+        CONFIDENTIAL STRIP
+
+        =============================*/
+
+        .confidential{
+
+            background:#C1121F;
+
+            color:white;
+
+            padding:15px;
+
+            text-align:center;
+
+            font-size:20px;
+
+            font-weight:bold;
+
+        }
+
+        /*============================
+
+        CARD
+
+        =============================*/
+
+        .main-card{
+
+            margin-top:30px;
+
+            margin-bottom:40px;
+
+            background:white;
+
+            border-radius:15px;
+
+            box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+        }
+
+        .section-title{
+
+            color:#0B1F63;
+
+            font-size:24px;
+
+            font-weight:bold;
+
+            border-left:6px solid #FFD000;
+
+            padding-left:12px;
+
+            margin-bottom:25px;
+
+        }
+
+        .info-box{
+
+            background:#F8F9FA;
+
+            border-left:5px solid #0B1F63;
+
+            padding:20px;
+
+            border-radius:10px;
+
+        }
+
+        .label{
+
+            font-weight:bold;
+
+            color:#555;
+
+        }
+
+        .value{
+
+            color:#0B1F63;
+
+            font-weight:bold;
+
+            font-size:18px;
+
+        }
+
+        .badge-demo{
+
+            background:#FFD000;
+
+            color:black;
+
+            font-size:16px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="top-strip">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-2 text-center">
+
+                <img src="images/karnataka-police.png"
+
+                     class="logo">
+
+            </div>
+
+            <div class="col-8 text-center">
+
+                <div class="main-title">
+
+                    BEDA BRO
+
+                </div>
+
+                <div class="sub-title">
+
+                    Brothers Empowered Against Drugs
+
+                </div>
+
+                <br>
+
+                <h4>
+
+                    Drug Intelligence Platform
+
+                </h4>
+
+            </div>
+
+            <div class="col-2 text-center">
+
+                <img src="images/bcp-logo.png"
+
+                     class="logo">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- BLUE BANNER -->
+
+<div class="banner">
+
+    <h2>
+
+        Anonymous Drug Activity Reporting
+
+    </h2>
+
+    <h5>
+
+        Karnataka State Police
+
+    </h5>
+
+</div>
+
+<!-- CONFIDENTIAL -->
+
+<div class="confidential">
+
+    <i class="fa-solid fa-lock"></i>
+
+    YOUR IDENTITY WILL BE KEPT CONFIDENTIAL
+
+</div>
+
+<!-- MAIN CARD -->
+
+<div class="container">
+
+    <div class="main-card">
+
+        <div class="p-4">
+
+            <div class="d-flex justify-content-between">
+
+                <h3 class="section-title">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    QR Location Information
+
+                </h3>
+
+                <span class="badge badge-demo">
+
+Demo
+
+</span>
+
+            </div>
+
+            <div class="info-box">
+
+                <div class="row">
+
+                    <div class="col-md-4">
+
+                        <div class="label">
+
+                            QR Code
+
+                        </div>
+
+                        <div class="value" id="qrCode">
+
+                            <span th:text="${qrLocation.qrCode}"></span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="label">
+
+                            Police Station
+
+                        </div>
+
+                        <div class="value" id="station">
+
+                            <span th:text="${qrLocation.policeStation}"></span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="label">
+
+                            Location
+
+                        </div>
+
+                        <div class="value" id="location">
+
+                            <span th:text="${qrLocation.location}"></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="alert alert-success">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                Please provide as much information as possible. Your identity is never collected during submission.
+
+            </div>
+
+            <hr>
+
+            <form id="reportForm" th:action="@{/submitReport}"
+                  method="post"
+                  enctype="multipart/form-data">
+                <input type="hidden"
+                       name="qrCode"
+                       th:value="${qrLocation.qrCode}">
+
+                <input type="hidden"
+                       name="policeStation"
+                       th:value="${qrLocation.policeStation}">
+
+                <input type="hidden"
+                       name="location"
+                       th:value="${qrLocation.location}">
+
+                <h3 class="section-title">
+
+                    <i class="fa-solid fa-file-circle-plus"></i>
+
+                    Incident Information
+
+                </h3>
+
+                <!-- ==============================
+                INCIDENT TYPE
+                ============================== -->
+
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <label class="form-label fw-bold">
+
+                            Nature of Activity <span class="text-danger">*</span>
+
+                        </label>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-check">
+
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="activity"
+                                   value="Drug Sale"
+                                   required>
+
+                            <label class="form-check-label">
+
+                                Drug Sale
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-check">
+
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="activity"
+                                   value="Drug Consumption">
+
+                            <label class="form-check-label">
+
+                                Drug Consumption
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-check">
+
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="activity"
+                                   value="Drug Transportation">
+
+                            <label class="form-check-label">
+
+                                Drug Transportation
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4 mt-2">
+
+                        <div class="form-check">
+
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="activity"
+                                   value="Drug Storage">
+
+                            <label class="form-check-label">
+
+                                Drug Storage
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4 mt-2">
+
+                        <div class="form-check">
+
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="activity"
+                                   value="Suspicious Gathering">
+
+                            <label class="form-check-label">
+
+                                Suspicious Gathering
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4 mt-2">
+
+                        <div class="form-check">
+
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="activity"
+                                   value="Others">
+
+                            <label class="form-check-label">
+
+                                Others
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr class="mt-4">
+
+                <!-- ==============================
+                LANDMARK
+                ============================== -->
+
+                <div class="mb-4">
+
+                    <label class="form-label fw-bold">
+
+                        Exact Landmark <span class="text-danger">*</span>
+
+                    </label>
+
+                    <input type="text"
+                           class="form-control form-control-lg"
+                           name="landmark"
+                           placeholder="Example: Near Metro Pillar 132, Opposite XYZ Hotel"
+                           required>
+
+                </div>
+
+                <!-- ==============================
+                FREQUENCY
+                ============================== -->
+
+                <div class="mb-4">
+
+                    <label class="form-label fw-bold">
+
+                        Frequency of Activity
+
+                    </label>
+
+                    <select class="form-select form-select-lg" name="frequency">
+
+                        <option selected>
+
+                            Select Frequency
+
+                        </option>
+
+                        <option>
+
+                            Observed Once
+
+                        </option>
+
+                        <option>
+
+                            Daily
+
+                        </option>
+
+                        <option>
+
+                            Weekly
+
+                        </option>
+
+                        <option>
+
+                            Monthly
+
+                        </option>
+
+                        <option>
+
+                            Not Sure
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- ==============================
+                DATE TIME
+                ============================== -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-4">
+
+                        <label class="form-label fw-bold">
+
+                            Observed Date
+
+                        </label>
+
+                        <input type="date"
+
+                               class="form-control form-control-lg" name="observedDate">
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <label class="form-label fw-bold">
+
+                            Observed Time
+
+                        </label>
+
+                        <input type="time"
+
+                               class="form-control form-control-lg" name="observedTime">
+
+                    </div>
+
+                </div>
+
+                <!-- ==============================
+                DESCRIPTION
+                ============================== -->
+
+                <div class="mb-4">
+
+                    <label class="form-label fw-bold">
+
+                        Detailed Description
+
+                        <span class="text-danger">*</span>
+
+                    </label>
+
+                    <textarea
+
+                            class="form-control"
+
+                            rows="6"
+
+                            name="description"
+
+                            placeholder="Describe what you observed. Mention people involved, approximate age, clothing, suspicious behaviour, etc."
+
+                            required></textarea>
+
+                </div>
+
+                <!-- ==============================
+                VEHICLE
+                ============================== -->
+
+                <h3 class="section-title">
+
+                    <i class="fa-solid fa-car"></i>
+
+                    Vehicle Information (Optional)
+
+                </h3>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Vehicle Number
+
+                        </label>
+
+                        <input
+
+                                type="text"
+
+                                class="form-control"
+
+                                name="vehicleNumber"
+
+                                placeholder="KA-01-AB-1234">
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Vehicle Type
+
+                        </label>
+
+                        <select class="form-select" name="vehicleType">
+
+                            <option>
+
+                                Select
+
+                            </option>
+
+                            <option>
+
+                                Bike
+
+                            </option>
+
+                            <option>
+
+                                Car
+
+                            </option>
+
+                            <option>
+
+                                Auto
+
+                            </option>
+
+                            <option>
+
+                                Van
+
+                            </option>
+
+                            <option>
+
+                                Truck
+
+                            </option>
+
+                            <option>
+
+                                Others
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Vehicle Colour
+
+                        </label>
+
+                        <input
+
+                                type="text"
+
+                                class="form-control"
+
+                                name="vehicleColour"
+
+                                placeholder="White">
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <h3 class="section-title">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    Urgency Level
+
+                </h3>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+
+                        <div class="card border-success">
+
+                            <div class="card-body text-center">
+
+                                <input
+
+                                        type="radio"
+
+                                        name="urgency"
+
+                                        value="LOW">
+
+                                <h5 class="text-success mt-3">
+
+                                    General Information
+
+                                </h5>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="card border-warning">
+
+                            <div class="card-body text-center">
+
+                                <input
+
+                                        type="radio"
+
+                                        name="urgency"
+
+                                        value="MEDIUM">
+
+                                <h5 class="text-warning mt-3">
+
+                                    Important
+
+                                </h5>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="card border-danger">
+
+                            <div class="card-body text-center">
+
+                                <input
+
+                                        type="radio"
+
+                                        name="urgency"
+
+                                        value="HIGH"
+
+                                        checked>
+
+                                <h5 class="text-danger mt-3">
+
+                                    Immediate Police Action
+
+                                </h5>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <br>
+
+                <!-- =========================================================
+                EVIDENCE UPLOAD
+                ========================================================== -->
+
+                <h3 class="section-title">
+
+                    <i class="fa-solid fa-camera"></i>
+
+                    Evidence Upload (Optional)
+
+                </h3>
+
+                <div class="card border-primary">
+
+                    <div class="card-body">
+
+                        <div class="text-center">
+
+                            <i class="fa-solid fa-cloud-arrow-up fa-4x text-primary mb-3"></i>
+
+                            <h5>
+
+                                Upload Photos or Videos
+
+                            </h5>
+
+                            <p class="text-muted">
+
+                                Supporting evidence helps the Police verify the information quickly.
+
+                            </p>
+
+                            <input
+
+                                    type="file"
+
+                                    id="evidence"
+
+                                    name="evidenceFiles"
+
+                                    class="form-control form-control-lg"
+
+                                    accept="image/*,video/*"
+
+                                    multiple>
+
+                            <br>
+
+                            <small class="text-muted">
+
+                                Supported Formats : JPG, PNG, JPEG, MP4, MOV
+
+                                Maximum Size : 25 MB
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <br>
+
+                <!-- =========================================================
+                SUSPECT INFORMATION
+                ========================================================== -->
+
+                <h3 class="section-title">
+
+                    <i class="fa-solid fa-user-secret"></i>
+
+                    Suspect Information (Optional)
+
+                </h3>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Suspect Name (If Known)
+
+                        </label>
+
+                        <input
+
+                                type="text"
+
+                                class="form-control"
+
+                                name="suspectName"
+
+                                placeholder="Enter Name">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Approximate Age
+
+                        </label>
+
+                        <input
+
+                                type="number"
+
+                                class="form-control"
+
+                                name="suspectAge"
+
+                                placeholder="Age">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Gender
+
+                        </label>
+
+                        <select class="form-select" name="gender">
+
+                            <option>
+
+                                Unknown
+
+                            </option>
+
+                            <option>
+
+                                Male
+
+                            </option>
+
+                            <option>
+
+                                Female
+
+                            </option>
+
+                            <option>
+
+                                Others
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Number of Persons Involved
+
+                        </label>
+
+                        <input
+
+                                type="number"
+
+                                class="form-control"
+
+                                name="numberOfPersons"
+
+                                placeholder="Example : 3">
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <!-- =========================================================
+                ADDITIONAL REMARKS
+                ========================================================== -->
+
+                <h3 class="section-title">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                    Additional Remarks
+
+                </h3>
+
+                <textarea
+
+                        class="form-control"
+
+                        rows="5"
+
+                        name="remarks"
+
+                        placeholder="Enter any additional information that may help the investigation..."></textarea>
+
+                <br>
+
+                <!-- =========================================================
+                CONFIDENTIALITY NOTICE
+                ========================================================== -->
+
+                <div class="alert alert-warning">
+
+                    <h5>
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        Privacy Notice
+
+                    </h5>
+
+                    <hr>
+
+                    <ul>
+
+                        <li>
+
+                            Your name is NOT collected.
+
+                        </li>
+
+                        <li>
+
+                            Your mobile number is NOT collected.
+
+                        </li>
+
+                        <li>
+
+                            Your identity is completely anonymous.
+
+                        </li>
+
+                        <li>
+
+                            Only the information you submit will be forwarded to the concerned Police Station.
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <!-- =========================================================
+                DECLARATION
+                ========================================================== -->
+
+                <div class="card">
+
+                    <div class="card-body">
+
+                        <div class="form-check">
+
+                            <input
+
+                                    class="form-check-input"
+
+                                    type="checkbox"
+
+                                    name="agree"
+
+                                    id="agree"
+
+                                    required>
+
+                            <label class="form-check-label">
+
+                                I declare that the above information is true to the best of my knowledge and is being submitted voluntarily.
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <br>
+
+                <!-- =========================================================
+                SUBMIT BUTTON
+                ========================================================== -->
+
+                <div class="d-grid">
+
+                    <button
+
+                            class="btn btn-lg btn-danger"
+
+                            style="height:60px;font-size:22px;">
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        Submit Anonymous Report
+
+                    </button>
+
+                </div>
+
+                <br>
+
+                <div class="text-center">
+
+                    <h5 class="text-success">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        Your Identity Will Remain Confidential
+
+                    </h5>
+
+                    <p class="text-muted">
+
+                        Thank you for supporting the fight against drugs.
+
+                    </p>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+FOOTER
+========================================================== -->
+
+<footer class="mt-5">
+
+    <div style="background:#0B1F63;color:white;padding:30px;">
+
+        <div class="container text-center">
+
+            <h4>
+
+                BEDA BRO
+
+            </h4>
+
+            <p>
+
+                Brothers Empowered Against Drugs
+
+            </p>
+
+            <hr style="background:white;">
+
+            <p>
+
+                Drug Intelligence Platform
+
+            </p>
+
+            <p>
+
+                Karnataka State Police
+
+            </p>
+
+            <p>
+
+                © 2026 All Rights Reserved
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+    /*====================================================
+        QR MASTER DATA
+    ====================================================*/
+
+    <!--const qrDatabase = {
+
+        "QR001":{
+
+            station:"Ashok Nagar Police Station",
+
+            location:"MG Road Metro Station",
+
+            latitude:"12.9756",
+
+            longitude:"77.6050"
+
+        },
+
+        "QR002":{
+
+            station:"Ashok Nagar Police Station",
+
+            location:"Church Street",
+
+            latitude:"12.9752",
+
+            longitude:"77.6072"
+
+        },
+
+        "QR003":{
+
+            station:"Cubbon Park Police Station",
+
+            location:"Cubbon Park Gate",
+
+            latitude:"12.9764",
+
+            longitude:"77.5928"
+
+        },
+
+        "QR004":{
+
+            station:"Upparpet Police Station",
+
+            location:"Majestic Bus Stand",
+
+            latitude:"12.9784",
+
+            longitude:"77.5721"
+
+        }
+
+    };-->
+
+
+    /*====================================================
+        LOAD QR DETAILS
+    ====================================================*/
+
+   <!-- const params = new URLSearchParams(window.location.search);
+
+    const qr = params.get("qr");
+
+    if(qr && qrDatabase[qr]){
+
+        document.getElementById("qrCode").innerHTML = qr;
+
+        document.getElementById("station").innerHTML = qrDatabase[qr].station;
+
+        document.getElementById("location").innerHTML = qrDatabase[qr].location;
+
+    }else{
+
+        alert("Invalid QR Code");
+
+    }-->
+
+
+    /*====================================================
+        FORM SUBMIT
+    ====================================================*/
+
+    document.getElementById("reportForm").addEventListener("submit",function(e){
+
+        <!--e.preventDefault();-->
+
+        const activity=document.querySelector('input[name="activity"]:checked');
+
+        const urgency=document.querySelector('input[name="urgency"]:checked');
+
+        if(activity==null){
+
+            alert("Please select Nature of Activity");
+
+            return;
+
+        }
+
+        if(urgency==null){
+
+            alert("Please select Urgency");
+
+            return;
+
+        }
+
+        if(!document.getElementById("agree").checked){
+
+            alert("Please accept the declaration.");
+
+            return;
+
+        }
+
+        <!--let formData = new FormData(this);
+
+        formData.append("qrCode",qr);
+
+        formData.append("station",qrDatabase[qr].station);
+
+        formData.append("location",qrDatabase[qr].location);
+
+        formData.append("latitude",qrDatabase[qr].latitude);
+
+        formData.append("longitude",qrDatabase[qr].longitude);-->
+
+        /*
+
+        =========================================================
+
+        SPRING BOOT API
+
+        Uncomment after backend is ready
+
+        =========================================================
+
+
+        fetch("http://localhost:8080/api/report",{
+
+            method:"POST",
+
+            body:formData
+
+        })
+
+        .then(response=>response.json())
+
+        .then(data=>{
+
+            window.location="report-success.html";
+
+        })
+
+        .catch(error=>{
+
+            alert("Submission Failed");
+
+        });
+
+        */
+
+
+        /* Demo */
+
+        <!--alert("Report Submitted Successfully.\n\nThe information has been routed to\n\n"+qrDatabase[qr].station);
+
+        window.location="report-success.html";-->
+
+    });
+
+</script>
+
+</body>
+
+</html>
