@@ -83,11 +83,24 @@ public class BedabroController {
                         System.currentTimeMillis()+"_"
                                 +file.getOriginalFilename();
 
-                Path path =
+                /*Path path =
                         Paths.get("uploads",fileName);
 
                 Files.copy(file.getInputStream(),
-                        path);
+                        path);*/
+
+
+                Path uploadDir = Paths.get("uploads");
+
+                if (!Files.exists(uploadDir)) {
+                    Files.createDirectories(uploadDir);
+                }
+
+                Path path = uploadDir.resolve(fileName);
+
+                Files.copy(file.getInputStream(), path);
+
+                report.setEvidenceFileName(fileName);
 
                 report.setEvidenceFileName(fileName);
 
