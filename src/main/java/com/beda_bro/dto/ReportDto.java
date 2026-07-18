@@ -55,4 +55,10 @@ public class ReportDto {
 
     private String evidenceFileName;
 
+    private String assignee;
+
+    private double longitude;
+
+    private double latitude;
+
 }

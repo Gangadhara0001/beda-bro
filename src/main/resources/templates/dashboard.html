@@ -271,6 +271,8 @@
 
                             <th>Priority</th>
 
+                            <th>Assignee</th>
+
                             <th>Status</th>
 
                             <th>Action</th>
@@ -336,13 +338,60 @@
 
                             </td>
 
+                            <!-- Assignee -->
+
                             <td>
 
-                <span class="badge bg-primary">
+                                <form th:action="@{/assign-case}" method="post">
 
-                    NEW
+                                    <input type="hidden"
+                                           name="id"
+                                           th:value="${r.id}">
 
-                </span>
+                                    <select class="form-select form-select-sm"
+                                            name="assignee"
+                                            onchange="this.form.submit()">
+
+                                        <option value="">Select Officer</option>
+
+                                        <option value="Sharath"
+                                                th:selected="${r.assignee=='Sharath'}">
+                                            Sharath
+                                        </option>
+
+                                        <option value="Ranganatha B R"
+                                                th:selected="${r.assignee=='Ranganatha B R'}">
+                                            Ranganatha B R
+                                        </option>
+
+                                        <option value="Manjunath N"
+                                                th:selected="${r.assignee=='Manjunath N'}">
+                                            Manjunath N
+                                        </option>
+
+                                    </select>
+
+                                </form>
+
+                            </td>
+
+                            <!-- Status -->
+
+                            <td>
+
+    <span th:if="${r.assignee==null || r.assignee==''}"
+          class="badge bg-primary">
+
+        NEW
+
+    </span>
+
+                                <span th:if="${r.assignee!=null && r.assignee!=''}"
+                                      class="badge bg-success">
+
+        ASSIGNED
+
+    </span>
 
                             </td>
 
@@ -354,6 +403,13 @@
                                     <i class="fa-solid fa-eye"></i>
 
                                     Open Case
+
+                                </a>
+
+                                <a th:href="@{/download-report(id=${r.id})}"
+                                   class="btn btn-success btn-sm">
+
+                                    <i class="fa-solid fa-download"></i>
 
                                 </a>
 
@@ -484,6 +540,17 @@
                         </td>
 
                     </tr>
+                    <tr>
+
+                        <th>
+                            Asignee
+                        </th>
+
+                        <td id="popupAsignee">
+                        </td>
+
+                    </tr>
+
 
                     <tr>
 
@@ -557,6 +624,9 @@
 
             document.getElementById("popupPriority").innerHTML=
                     latest.cells[3].innerText;
+
+            document.getElementById("popupAsignee").innerHTML=
+                    latest.cells[4].innerText;
 
             document.getElementById("popupTime").innerHTML=
                     new Date().toLocaleString();

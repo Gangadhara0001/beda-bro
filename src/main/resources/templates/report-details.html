@@ -254,6 +254,17 @@
                 </div>
 
             </div>
+            <div class="col-md-6">
+
+                <p>
+
+                    <b>Assigned Officer :</b>
+
+                    <span th:text="${report.assignee!=null && report.assignee!='' ? report.assignee : 'Not Assigned'}"></span>
+
+                </p>
+
+            </div>
             <hr>
 
             <a href="/dashboard"

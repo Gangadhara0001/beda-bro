@@ -150,6 +150,8 @@ public class BedabroController {
 
         }
 
+
+
         ReportStorage.reports.add(report);
 
         System.out.println(report);
