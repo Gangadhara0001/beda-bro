@@ -357,6 +357,32 @@
 
 </footer>
 
+<script>
+
+    // Current number of reports
+    const currentCount = [[${count}]];
+
+    // Previous count stored in browser
+    const previousCount = localStorage.getItem("reportCount");
+
+    // If there are new reports
+    if(previousCount != null && currentCount > previousCount){
+
+        const newReports = currentCount - previousCount;
+
+        alert("🚨 " + newReports + " New Anonymous Report(s) Received.");
+
+    }
+
+    // Save latest count
+    localStorage.setItem("reportCount", currentCount);
+
+    // Refresh every 60 seconds
+    setTimeout(function () {
+        location.reload();
+    }, 60000);
+
+</script>
 
 </body>
 

@@ -33,7 +33,7 @@ public class DashboardController {
 
         model.addAttribute("reports",ReportStorage.reports);
 
-        //model.addAttribute("count",reports.size());
+        model.addAttribute("count",ReportStorage.reports.size());
 
         return "dashboard";
     }
