@@ -17,23 +17,23 @@ public class DashboardController {
     public String dashboard(HttpSession session,
                             Model model){
 
-        String station=(String)session.getAttribute("station");
+        /*String station=(String)session.getAttribute("station");
 
         if(station==null){
 
             return "redirect:/login";
-        }
+        }*/
 
-        List<ReportDto> reports =
+        /*List<ReportDto> reports =
                 ReportStorage.reports.stream()
                         .filter(r->station.equals(r.getPoliceStation()))
-                        .collect(Collectors.toList());
+                        .collect(Collectors.toList());*/
 
-        model.addAttribute("station",station);
+        //model.addAttribute("station",station);
 
-        model.addAttribute("reports",reports);
+        model.addAttribute("reports",ReportStorage.reports);
 
-        model.addAttribute("count",reports.size());
+        //model.addAttribute("count",reports.size());
 
         return "dashboard";
     }

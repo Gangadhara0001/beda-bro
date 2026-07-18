@@ -35,6 +35,8 @@ public class ReportDto {
 
     private String suspectName;
 
+    private String suspectMobileNumber;
+
     private Integer suspectAge;
 
     private String gender;

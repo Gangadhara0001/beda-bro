@@ -14,7 +14,7 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public String login(
             @RequestParam String username,
             @RequestParam String password,
@@ -53,6 +53,26 @@ public class LoginController {
 
         return "login";
 
+    }*/
+
+    @PostMapping("/login")
+    public String login(
+            @RequestParam String username,
+            @RequestParam String password,
+            HttpSession session,
+            Model model) {
+
+        if(username.equals("admin") && password.equals("123")){
+
+            session.setAttribute("user", "Administrator");
+            session.setAttribute("role", "ADMIN");
+
+            return "redirect:/dashboard";
+        }
+
+        model.addAttribute("error","Invalid Username or Password");
+
+        return "login";
     }
 
 }

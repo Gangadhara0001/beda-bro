@@ -10,5 +10,7 @@ public class QrLocationDto {
     private String qrCode;
     private String policeStation;
     private String location;
+    private double longitude;
+    private double latitude;
 
 }

@@ -307,7 +307,7 @@ Demo
 
                 <div class="row">
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
 
                         <div class="label">
 
@@ -323,7 +323,7 @@ Demo
 
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
 
                         <div class="label">
 
@@ -339,7 +339,7 @@ Demo
 
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
 
                         <div class="label">
 
@@ -350,6 +350,21 @@ Demo
                         <div class="value" id="location">
 
                             <span th:text="${qrLocation.location}"></span>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+
+                        <div class="label">
+
+                            Latitude & Longitude
+
+                        </div>
+
+                        <div class="value" id="latitudeAndLongitude">
+
+                            <span th:text="${qrLocation.latitude + ', ' + qrLocation.longitude}"></span>
 
                         </div>
 
@@ -1051,6 +1066,28 @@ Demo
 
                     </div>
 
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Suspect Mobile Number (If Known)
+
+                        </label>
+
+                        <input
+
+                                type="text"
+
+                                class="form-control"
+
+                                name="suspectMobileNumber"
+
+                                placeholder="Enter Mobile Number">
+
+                    </div>
                 </div>
 
                 <hr>

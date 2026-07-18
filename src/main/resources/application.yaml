@@ -9,5 +9,6 @@ spring:
 
 server:
   port: ${PORT:8079}
-
+#server:
+  #port: 8079
 

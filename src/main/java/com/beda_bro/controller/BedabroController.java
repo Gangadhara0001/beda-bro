@@ -37,29 +37,71 @@ public class BedabroController {
             case "QR001":
                 qrLocation = new QrLocationDto(
                         "QR001",
-                        "Ashok Nagar Police Station",
-                        "MG Road Metro Station");
+                        "Electronic City Police Station",
+                        "Electronic City Bus Stop",
+                        12.8399,
+                        77.6770
+                );
                 break;
 
             case "QR002":
                 qrLocation = new QrLocationDto(
                         "QR002",
-                        "Cubbon Park Police Station",
-                        "Cubbon Park Gate");
+                        "Parappana Agrahara Police Station",
+                        "Silk Institute Metro Station",
+                        12.8856,
+                        77.6589
+                );
                 break;
 
             case "QR003":
                 qrLocation = new QrLocationDto(
                         "QR003",
-                        "Upparpet Police Station",
-                        "Majestic Bus Stand");
+                        "Bandepalya Police Station",
+                        "Bandepalya Bus Stop",
+                        12.8922,
+                        77.6205
+                );
+                break;
+
+            case "QR004":
+                qrLocation = new QrLocationDto(
+                        "QR004",
+                        "Begur Police Station",
+                        "Begur Bus Stop",
+                        12.8888,
+                        77.6373
+                );
+                break;
+
+            case "QR005":
+                qrLocation = new QrLocationDto(
+                        "QR005",
+                        "Hulimavu Police Station",
+                        "Hulimavu Metro Station",
+                        12.8768,
+                        77.6048
+                );
+                break;
+
+            case "QR006":
+                qrLocation = new QrLocationDto(
+                        "QR006",
+                        "Hebbagodi Police Station",
+                        "Hebbagodi Bus Stop",
+                        12.8238,
+                        77.6893
+                );
                 break;
 
             default:
                 qrLocation = new QrLocationDto(
                         qr,
                         "Unknown Station",
-                        "Unknown Location");
+                        "Unknown Location",
+                        0.0,
+                        0.0
+                );
         }
 
         model.addAttribute("qrLocation", qrLocation);
