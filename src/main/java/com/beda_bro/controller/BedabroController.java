@@ -1,8 +1,11 @@
 package com.beda_bro.controller;
 
+import com.beda_bro.dto.IpLocationDto;
 import com.beda_bro.dto.QrLocationDto;
 import com.beda_bro.dto.ReportDto;
 import com.beda_bro.storage.ReportStorage;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +17,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
 public class BedabroController {
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @GetMapping("/")
     public String index() {
@@ -110,7 +117,63 @@ public class BedabroController {
     }
 
     @PostMapping("/submitReport")
-    public String home(@ModelAttribute ReportDto report,Model model) throws Exception {
+    public String home(@ModelAttribute ReportDto report, HttpServletRequest request, Model model) throws Exception {
+
+        String ip = request.getHeader("X-Forwarded-For");
+
+        if (ip != null && !ip.isBlank()) {
+            ip = ip.split(",")[0].trim();
+        } else {
+            ip = request.getRemoteAddr();
+        }
+
+        System.out.println("Client IP : " + ip);
+
+        if (!ip.equals("127.0.0.1")
+                && !ip.equals("0:0:0:0:0:0:0:1")
+                && !ip.equalsIgnoreCase("localhost")) {
+
+            try {
+
+                String url = "https://ipapi.co/" + ip + "/json/";
+
+                IpLocationDto location =
+                        restTemplate.getForObject(url, IpLocationDto.class);
+
+                if (location != null) {
+
+                    report.setIpAddress(ip);
+
+                    report.setCity(location.getCity());
+
+                    report.setState(location.getRegion());
+
+                    report.setCountry(location.getCountry_name());
+
+                    report.setLatitude(location.getLatitude());
+
+                    report.setLongitude(location.getLongitude());
+
+                    System.out.println("Approximate Location");
+                    System.out.println("City : " + location.getCity());
+                    System.out.println("State : " + location.getRegion());
+                    System.out.println("Country : " + location.getCountry_name());
+                    System.out.println("Latitude : " + location.getLatitude());
+                    System.out.println("Longitude : " + location.getLongitude());
+                }
+
+            } catch (Exception ex) {
+
+                System.out.println("Unable to fetch IP location : " + ex.getMessage());
+
+            }
+
+        } else {
+
+            System.out.println("Localhost detected. Skipping IP lookup.");
+
+        }
+
 
         report.setId(System.currentTimeMillis());
 

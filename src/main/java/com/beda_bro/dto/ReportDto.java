@@ -61,4 +61,12 @@ public class ReportDto {
 
     private double latitude;
 
+    private String ipAddress;
+
+    private String city;
+
+    private String state;
+
+    private String country;
+
 }

@@ -215,6 +215,135 @@
 
         }
 
+        .beda-section{
+    text-align:center;
+    margin-top:20px;
+}
+        .header-row{
+    margin-bottom:15px;
+}
+
+        .police-logo{
+
+    max-width:90px;
+
+    max-height:80px;
+
+    width:auto;
+
+    height:auto;
+
+    object-fit:contain;
+
+}
+
+       .gov-title{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.gov-subtitle{
+    font-size:16px;
+    color:#555;
+}
+
+.main-title{
+    font-size:48px;
+    font-weight:bold;
+    color:#0b2e59;
+}
+
+.sub-title{
+    font-size:24px;
+    color:#c91c1c;
+    font-weight:bold;
+}
+ /* ===========================
+   MOBILE & TABLET ONLY
+=========================== */
+
+@media (max-width:991px){
+
+    .header-row{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    /* Order */
+
+    .header-center{
+        order:1;
+        width:100%;
+        text-align:center;
+    }
+
+    .header-left{
+        order:2;
+        width:100%;
+        text-align:center;
+        margin-top:10px;
+    }
+
+    .header-right{
+        order:3;
+        width:100%;
+        text-align:center !important;
+        margin-top:10px;
+    }
+
+    /* Police logo & title */
+
+    .police-header{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin-bottom:15px;
+    }
+
+    .police-logo{
+        height:55px;
+        width:auto;
+        margin-right:10px;
+    }
+
+    .gov-title{
+        font-size:20px;
+        font-weight:bold;
+    }
+
+    .gov-subtitle{
+        font-size:14px;
+    }
+
+    /* CM & HM */
+
+    .cm-img,
+    .hm-img{
+        max-height:85px;
+        width:auto;
+        margin:auto;
+        display:block;
+    }
+
+    /* Titles */
+
+    .main-title{
+        font-size:34px;
+        margin-top:15px;
+    }
+
+    .sub-title{
+        font-size:17px;
+    }
+
+    .platform-title{
+        font-size:25px;
+        margin-top:10px;
+    }
+
+}
+
     </style>
 
 </head>
@@ -224,30 +353,75 @@
 <!-- HEADER -->
 
 <div class="top-strip">
-    <div class="container">
-        <div class="row align-items-center">
+    <div class="container-fluid py-3">
 
-            <div class="col-2 text-center">
-                <img th:src="@{/karnataka-police.jpeg}" class="logo" alt="Karnataka State Police">
+        <div class="row align-items-center header-row">
+
+            <!-- Left -->
+            <div class="col-md-3 header-left">
+
+                <img th:src="@{/CM.png}"
+                     class="img-fluid cm-img"
+                     alt="Chief Minister">
+
             </div>
 
-            <div class="col-8 text-center">
-                <div class="gov-title">Karnataka State Police</div>
-                <div class="gov-subtitle">Government of Karnataka</div>
+            <!-- Center -->
+            <div class="col-md-6 text-center header-center">
 
-                <div class="main-title mt-3">BEDA BRO</div>
-                <div class="sub-title">Brothers Empowered Against Drugs</div>
+                <div class="d-flex justify-content-center align-items-center police-header">
 
-                <h4 class="mt-3">Drug Intelligence Platform</h4>
+                    <img th:src="@{/karnataka-police.jpeg}"
+                         class="police-logo"
+                         alt="Karnataka Police">
+
+                    <div class="text-start">
+
+                        <div class="gov-title">
+                            Karnataka State Police
+                        </div>
+
+                        <div class="gov-subtitle">
+                            Government of Karnataka
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
             </div>
 
-            <div class="col-2 text-center">
-                <img th:src="@{/bcp-logo.jpeg}" class="logo" alt="Bengaluru City Police">
+
+
+            <!-- Right -->
+            <div class="col-md-3 text-end header-right">
+
+                <img th:src="@{/HomeMinister.jpeg}"
+                     class="img-fluid hm-img"
+                     alt="Home Minister">
+
             </div>
 
         </div>
+        <div class="beda-section">
+
+            <div class="main-title">
+                BEDA BRO
+            </div>
+
+            <div class="sub-title">
+                Brothers Empowered Against Drugs
+            </div>
+
+            <h3 class="platform-title">
+                Drug Intelligence Platform
+            </h3>
+
+        </div>
+
     </div>
-</div>
 
 <!-- BLUE BANNER -->
 
