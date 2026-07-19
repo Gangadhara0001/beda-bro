@@ -83,11 +83,221 @@
             font-size:14px;
         }
 
+        .main-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #0b2e59;
+        }
+
+        .sub-title {
+            font-size: 24px;
+            color: #c91c1c;
+            font-weight: bold;
+        }
+
+        .beda-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .header-row {
+            margin-bottom: 6px;
+        }
+
+         /* Desktop Text Styles */
+        .gov-title { font-size: 22px; font-weight: bold; color: #000; }
+        .gov-subtitle { font-size: 16px; color: #555; }
+        .profile-title { font-size: 14px; font-weight: bold; margin-top: 5px; color: #000; }
+        .profile-subtitle { font-size: 12px; color: #555; }
+
+        /* Images Desktop */
+        .police-logo {
+            max-width: 90px;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+        .cm-img, .hm-img {
+            max-height: 100px;
+            width: auto;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+       /* ===========================================
+   MOBILE & TABLET ONLY (< 992px)
+=========================================== */
+@media (max-width: 991px) {
+    .header-row {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .header-left, .header-center, .header-right {
+        width: 33.33% !important;
+        text-align: center !important;
+        padding: 0 2px !important; /* Prevents columns from overlapping on narrow 340px screens */
+    }
+
+    .profile-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .police-header {
+        display: flex;
+        flex-direction: column !important;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* INCREASED PHOTO SIZES */
+    .cm-img, .hm-img {
+        max-height: 70px !important; /* Increased from 55px */
+        width: 70px !important;      /* Increased from 55px */
+        height: 70px !important;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Optional: makes them pop slightly more */
+    }
+
+    .police-logo {
+        height: 65px !important; /* Increased from 50px */
+        width: auto !important;
+        margin-right: 0 !important;
+        margin-bottom: 5px;
+        object-fit: contain;
+    }
+
+    /* DECREASED TEXT SIZES */
+    .profile-title {
+        font-size: 8px !important; /* Decreased size */
+        line-height: 1.1;
+        margin-top: 6px;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .profile-subtitle {
+        font-size: 7.5px !important; /* Decreased size */
+        line-height: 1.2;
+        color: #666;
+    }
+
+    .gov-title {
+        font-size: 9px !important; /* Decreased size */
+        line-height: 1.1;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .gov-subtitle {
+        font-size: 8px !important; /* Decreased size */
+        line-height: 1.1;
+        color: #666;
+    }
+
+    /* App Titles */
+    .main-title { font-size: 32px; margin-top: 15px; }
+    .sub-title { font-size: 14px; }
+    .platform-title { font-size: 16px; }
+}
+
     </style>
 
 </head>
 
 <body>
+<div class="top-strip">
+<div class="container-fluid py-3">
+
+    <!-- ==========================================
+         1. DESKTOP ONLY HEADER (Hidden on Mobile)
+         ========================================== -->
+    <div class="row align-items-center d-none d-lg-flex">
+        <!-- Left: CM -->
+        <div class="col-md-4 text-start">
+            <div class="d-flex align-items-center">
+                <img th:src="@{/CM.jpeg}" class="img-fluid cm-img me-3" alt="Chief Minister">
+                <div>
+                    <div class="profile-title text-uppercase">Shri D.K. Shivakumar</div>
+                    <div class="profile-subtitle">Chief Minister<br>Govt. of Karnataka</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center: KSP Logo -->
+        <div class="col-md-4 text-center">
+            <div class="d-flex justify-content-center align-items-center">
+                <img th:src="@{/karnataka-police.jpeg}" class="police-logo me-3" alt="Karnataka Police">
+                <div class="text-start">
+                    <div class="gov-title">Karnataka State Police</div>
+                    <div class="gov-subtitle">Government of Karnataka</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: HM -->
+        <div class="col-md-4 text-end">
+            <div class="d-flex align-items-center justify-content-end">
+                <img th:src="@{/HM.jpeg}" class="img-fluid hm-img me-3" alt="Home Minister">
+                <div class="text-start">
+                    <div class="profile-title text-uppercase">Shri Priyank Kharge</div>
+                    <div class="profile-subtitle">Home Minister<br>Govt. of Karnataka</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==========================================
+         2. MOBILE ONLY HEADER (Hidden on Desktop)
+         ========================================== -->
+    <div class="row align-items-start d-flex d-lg-none header-row">
+        <!-- Left Slot: CM Stacked -->
+        <div class="col-4 text-center header-left">
+            <div class="profile-wrapper">
+                <img th:src="@{/CM.jpeg}" class="img-fluid cm-img" alt="Chief Minister">
+                <div class="profile-title">SHRI D.K. SHIVAKUMAR</div>
+                <div class="profile-subtitle">Chief Minister<br>Govt. of Karnataka</div>
+            </div>
+        </div>
+
+        <!-- Center Slot: KSP Stacked -->
+        <div class="col-4 text-center header-center">
+            <div class="police-header">
+                <img th:src="@{/karnataka-police.jpeg}" class="police-logo" alt="Karnataka Police">
+                <div>
+                    <div class="gov-title">Karnataka State Police</div>
+                    <div class="gov-subtitle">Government of Karnataka</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Slot: HM Stacked -->
+        <div class="col-4 text-center header-right">
+            <div class="profile-wrapper">
+                <img th:src="@{/HM.jpeg}" class="img-fluid hm-img" alt="Home Minister">
+                <div class="profile-title">SHRI PRIYANK KHARGE</div>
+                <div class="profile-subtitle">Home Minister<br>Govt. of Karnataka</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shared App Brand Section -->
+    <div class="beda-section">
+        <div class="main-title">BEDA BRO</div>
+        <div class="sub-title">Brothers Empowered Against Drugs</div>
+        <h3 class="platform-title">Drug Intelligence Platform</h3>
+    </div>
+
+</div>
+</div>
 
 <nav class="navbar navbar-expand-lg">
 

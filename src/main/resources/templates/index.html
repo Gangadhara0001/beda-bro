@@ -1,455 +1,333 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>BEDA BRO | Anonymous Drug Activity Report</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-
     <style>
-
-        body{
-
-            background:#eef2f7;
-
-            font-family:'Segoe UI',sans-serif;
-
+        body {
+            background: #eef2f7;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         /*============================
-
         HEADER
-
         =============================*/
-
-        .top-strip{
-
-            background:#ffffff;
-
-            border-bottom:5px solid #0B1F63;
-
-            padding:15px;
-
+        .top-strip {
+            background: #ffffff;
+            border-bottom: 5px solid #0B1F63;
+            padding: 15px;
         }
 
-      .logo{
-    width:130px;
-    height:130px;
-    object-fit:contain;
-    max-width:100%;
-}
-
-        .gov-title{
-
-    font-size:36px;
-
-    font-weight:bold;
-
-    color:#000;
-
-    margin-bottom:5px;
-
-}
-
-.gov-subtitle{
-
-    font-size:18px;
-
-    color:#666;
-
-    font-weight:600;
-
-    margin-bottom:15px;
-
-}
-
-        .main-title{
-
-            font-size:34px;
-
-            font-weight:bold;
-
-            color:#0B1F63;
-
+        .logo {
+            width: 130px;
+            height: 130px;
+            object-fit: contain;
+            max-width: 100%;
         }
 
-        .sub-title{
-
-            font-size:18px;
-
-            color:#C1121F;
-
-            font-weight:bold;
-
+        .main-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #0b2e59;
         }
 
-        .banner{
-
-            background:#0B1F63;
-
-            color:white;
-
-            padding:18px;
-
-            text-align:center;
-
+        .sub-title {
+            font-size: 24px;
+            color: #c91c1c;
+            font-weight: bold;
         }
 
-        .banner h2{
-
-            margin:0;
-
-            color:#FFD000;
-
-            font-weight:bold;
-
+        .banner {
+            background: #0B1F63;
+            color: white;
+            padding: 18px;
+            text-align: center;
         }
 
-        .banner h5{
+        .banner h2 {
+            margin: 0;
+            color: #FFD000;
+            font-weight: bold;
+        }
 
-            margin-top:10px;
-
+        .banner h5 {
+            margin-top: 10px;
         }
 
         /*============================
-
         CONFIDENTIAL STRIP
-
         =============================*/
-
-        .confidential{
-
-            background:#C1121F;
-
-            color:white;
-
-            padding:15px;
-
-            text-align:center;
-
-            font-size:20px;
-
-            font-weight:bold;
-
+        .confidential {
+            background: #C1121F;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: bold;
         }
 
         /*============================
-
         CARD
-
         =============================*/
-
-        .main-card{
-
-            margin-top:30px;
-
-            margin-bottom:40px;
-
-            background:white;
-
-            border-radius:15px;
-
-            box-shadow:0 10px 25px rgba(0,0,0,.15);
-
+        .main-card {
+            margin-top: 30px;
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,.15);
         }
 
-        .section-title{
-
-            color:#0B1F63;
-
-            font-size:24px;
-
-            font-weight:bold;
-
-            border-left:6px solid #FFD000;
-
-            padding-left:12px;
-
-            margin-bottom:25px;
-
+        .section-title {
+            color: #0B1F63;
+            font-size: 24px;
+            font-weight: bold;
+            border-left: 6px solid #FFD000;
+            padding-left: 12px;
+            margin-bottom: 25px;
         }
 
-        .info-box{
-
-            background:#F8F9FA;
-
-            border-left:5px solid #0B1F63;
-
-            padding:20px;
-
-            border-radius:10px;
-
+        .info-box {
+            background: #F8F9FA;
+            border-left: 5px solid #0B1F63;
+            padding: 20px;
+            border-radius: 10px;
         }
 
-        .label{
-
-            font-weight:bold;
-
-            color:#555;
-
+        .label {
+            font-weight: bold;
+            color: #555;
         }
 
-        .value{
-
-            color:#0B1F63;
-
-            font-weight:bold;
-
-            font-size:18px;
-
+        .value {
+            color: #0B1F63;
+            font-weight: bold;
+            font-size: 18px;
         }
 
-        .badge-demo{
-
-            background:#FFD000;
-
-            color:black;
-
-            font-size:16px;
-
+        .badge-demo {
+            background: #FFD000;
+            color: black;
+            font-size: 16px;
         }
 
-        .beda-section{
-    text-align:center;
-    margin-top:20px;
-}
-        .header-row{
-    margin-bottom:15px;
-}
+        .beda-section {
+            text-align: center;
+            margin-top: 20px;
+        }
 
-        .police-logo{
+        .header-row {
+            margin-bottom: 6px;
+        }
 
-    max-width:90px;
+        /* Desktop Text Styles */
+        .gov-title { font-size: 22px; font-weight: bold; color: #000; }
+        .gov-subtitle { font-size: 16px; color: #555; }
+        .profile-title { font-size: 14px; font-weight: bold; margin-top: 5px; color: #000; }
+        .profile-subtitle { font-size: 12px; color: #555; }
 
-    max-height:80px;
+        /* Images Desktop */
+        .police-logo {
+            max-width: 90px;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+        .cm-img, .hm-img {
+            max-height: 100px;
+            width: auto;
+            border-radius: 50%;
+            object-fit: cover;
+        }
 
-    width:auto;
-
-    height:auto;
-
-    object-fit:contain;
-
-}
-
-       .gov-title{
-    font-size:22px;
-    font-weight:bold;
-}
-
-.gov-subtitle{
-    font-size:16px;
-    color:#555;
-}
-
-.main-title{
-    font-size:48px;
-    font-weight:bold;
-    color:#0b2e59;
-}
-
-.sub-title{
-    font-size:24px;
-    color:#c91c1c;
-    font-weight:bold;
-}
- /* ===========================
-   MOBILE & TABLET ONLY
-=========================== */
-
-@media (max-width:991px){
-
-    .header-row{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
+       /* ===========================================
+   MOBILE & TABLET ONLY (< 992px)
+=========================================== */
+@media (max-width: 991px) {
+    .header-row {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-start;
+        justify-content: space-between;
     }
 
-    /* Order */
-
-    .header-center{
-        order:1;
-        width:100%;
-        text-align:center;
+    .header-left, .header-center, .header-right {
+        width: 33.33% !important;
+        text-align: center !important;
+        padding: 0 2px !important; /* Prevents columns from overlapping on narrow 340px screens */
     }
 
-    .header-left{
-        order:2;
-        width:100%;
-        text-align:center;
-        margin-top:10px;
+    .profile-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
-    .header-right{
-        order:3;
-        width:100%;
-        text-align:center !important;
-        margin-top:10px;
+    .police-header {
+        display: flex;
+        flex-direction: column !important;
+        align-items: center;
+        text-align: center;
     }
 
-    /* Police logo & title */
-
-    .police-header{
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        margin-bottom:15px;
+    /* INCREASED PHOTO SIZES */
+    .cm-img, .hm-img {
+        max-height: 70px !important; /* Increased from 55px */
+        width: 70px !important;      /* Increased from 55px */
+        height: 70px !important;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Optional: makes them pop slightly more */
     }
 
-    .police-logo{
-        height:55px;
-        width:auto;
-        margin-right:10px;
+    .police-logo {
+        height: 65px !important; /* Increased from 50px */
+        width: auto !important;
+        margin-right: 0 !important;
+        margin-bottom: 5px;
+        object-fit: contain;
     }
 
-    .gov-title{
-        font-size:20px;
-        font-weight:bold;
+    /* DECREASED TEXT SIZES */
+    .profile-title {
+        font-size: 8px !important; /* Decreased size */
+        line-height: 1.1;
+        margin-top: 6px;
+        font-weight: bold;
+        color: #000;
     }
 
-    .gov-subtitle{
-        font-size:14px;
+    .profile-subtitle {
+        font-size: 7.5px !important; /* Decreased size */
+        line-height: 1.2;
+        color: #666;
     }
 
-    /* CM & HM */
-
-    .cm-img,
-    .hm-img{
-        max-height:85px;
-        width:auto;
-        margin:auto;
-        display:block;
+    .gov-title {
+        font-size: 9px !important; /* Decreased size */
+        line-height: 1.1;
+        font-weight: bold;
+        color: #000;
     }
 
-    /* Titles */
-
-    .main-title{
-        font-size:34px;
-        margin-top:15px;
+    .gov-subtitle {
+        font-size: 8px !important; /* Decreased size */
+        line-height: 1.1;
+        color: #666;
     }
 
-    .sub-title{
-        font-size:17px;
-    }
-
-    .platform-title{
-        font-size:25px;
-        margin-top:10px;
-    }
-
+    /* App Titles */
+    .main-title { font-size: 32px; margin-top: 15px; }
+    .sub-title { font-size: 14px; }
+    .platform-title { font-size: 16px; }
 }
 
     </style>
-
 </head>
-
 <body>
 
 <!-- HEADER -->
-
 <div class="top-strip">
     <div class="container-fluid py-3">
 
-        <div class="row align-items-center header-row">
-
-            <!-- Left -->
-            <div class="col-md-3 header-left">
-
-                <img th:src="@{/CM.png}"
-                     class="img-fluid cm-img"
-                     alt="Chief Minister">
-
-            </div>
-
-            <!-- Center -->
-            <div class="col-md-6 text-center header-center">
-
-                <div class="d-flex justify-content-center align-items-center police-header">
-
-                    <img th:src="@{/karnataka-police.jpeg}"
-                         class="police-logo"
-                         alt="Karnataka Police">
-
-                    <div class="text-start">
-
-                        <div class="gov-title">
-                            Karnataka State Police
-                        </div>
-
-                        <div class="gov-subtitle">
-                            Government of Karnataka
-                        </div>
-
+        <!-- ==========================================
+             1. DESKTOP ONLY HEADER (Hidden on Mobile)
+             ========================================== -->
+        <div class="row align-items-center d-none d-lg-flex">
+            <!-- Left: CM -->
+            <div class="col-md-4 text-start">
+                <div class="d-flex align-items-center">
+                    <img th:src="@{/CM.jpeg}" class="img-fluid cm-img me-3" alt="Chief Minister">
+                    <div>
+                        <div class="profile-title text-uppercase">Shri D.K. Shivakumar</div>
+                        <div class="profile-subtitle">Chief Minister<br>Govt. of Karnataka</div>
                     </div>
-
                 </div>
-
-
-
             </div>
 
-
-
-            <!-- Right -->
-            <div class="col-md-3 text-end header-right">
-
-                <img th:src="@{/HomeMinister.jpeg}"
-                     class="img-fluid hm-img"
-                     alt="Home Minister">
-
+            <!-- Center: KSP Logo -->
+            <div class="col-md-4 text-center">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img th:src="@{/karnataka-police.jpeg}" class="police-logo me-3" alt="Karnataka Police">
+                    <div class="text-start">
+                        <div class="gov-title">Karnataka State Police</div>
+                        <div class="gov-subtitle">Government of Karnataka</div>
+                    </div>
+                </div>
             </div>
 
+            <!-- Right: HM -->
+            <div class="col-md-4 text-end">
+                <div class="d-flex align-items-center justify-content-end">
+                    <img th:src="@{/HM.jpeg}" class="img-fluid hm-img me-3" alt="Home Minister">
+                    <div class="text-start">
+                        <div class="profile-title text-uppercase">Shri Priyank Kharge</div>
+                        <div class="profile-subtitle">Home Minister<br>Govt. of Karnataka</div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
+        <!-- ==========================================
+             2. MOBILE ONLY HEADER (Hidden on Desktop)
+             ========================================== -->
+        <div class="row align-items-start d-flex d-lg-none header-row">
+            <!-- Left Slot: CM Stacked -->
+            <div class="col-4 text-center header-left">
+                <div class="profile-wrapper">
+                    <img th:src="@{/CM.jpeg}" class="img-fluid cm-img" alt="Chief Minister">
+                    <div class="profile-title">SHRI D.K. SHIVAKUMAR</div>
+                    <div class="profile-subtitle">Chief Minister<br>Govt. of Karnataka</div>
+                </div>
+            </div>
+
+            <!-- Center Slot: KSP Stacked -->
+            <div class="col-4 text-center header-center">
+                <div class="police-header">
+                    <img th:src="@{/karnataka-police.jpeg}" class="police-logo" alt="Karnataka Police">
+                    <div>
+                        <div class="gov-title">Karnataka State Police</div>
+                        <div class="gov-subtitle">Government of Karnataka</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Slot: HM Stacked -->
+            <div class="col-4 text-center header-right">
+                <div class="profile-wrapper">
+                    <img th:src="@{/HM.jpeg}" class="img-fluid hm-img" alt="Home Minister">
+                    <div class="profile-title">SHRI PRIYANK KHARGE</div>
+                    <div class="profile-subtitle">Home Minister<br>Govt. of Karnataka</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shared App Brand Section -->
         <div class="beda-section">
-
-            <div class="main-title">
-                BEDA BRO
-            </div>
-
-            <div class="sub-title">
-                Brothers Empowered Against Drugs
-            </div>
-
-            <h3 class="platform-title">
-                Drug Intelligence Platform
-            </h3>
-
+            <div class="main-title">BEDA BRO</div>
+            <div class="sub-title">Brothers Empowered Against Drugs</div>
+            <h3 class="platform-title">Drug Intelligence Platform</h3>
         </div>
 
     </div>
+</div>
 
 <!-- BLUE BANNER -->
-
 <div class="banner">
-
-    <h2>
-
-        Anonymous Drug Activity Reporting
-
-    </h2>
-
-    <h5>
-
-        Karnataka State Police
-
-    </h5>
-
+    <h2>Anonymous Drug Activity Reporting</h2>
+    <h5>Karnataka State Police</h5>
 </div>
 
 <!-- CONFIDENTIAL -->
-
 <div class="confidential">
-
-    <i class="fa-solid fa-lock"></i>
-
-    YOUR IDENTITY WILL BE KEPT CONFIDENTIAL
-
+    <i class="fa-solid fa-lock"></i> YOUR IDENTITY WILL BE KEPT CONFIDENTIAL
 </div>
+
 
 <!-- MAIN CARD -->
 
@@ -1475,6 +1353,7 @@ FOOTER
     </div>
 
 </footer>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
